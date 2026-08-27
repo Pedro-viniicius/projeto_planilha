@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+
+# Produto — a planilha e o entregavel pago; nao versionar em repositorio publico
+*.xlsx
+*.xlsm
+*.ods

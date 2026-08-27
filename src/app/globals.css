@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────
+   Design tokens — sistema visual "tecnologia contábil":
+   fundo neutro, tinta grafite, um acento institucional, muito ar.
+   As cores de dados foram validadas para daltonismo e contraste.
+   ─────────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink-900: #0b1a1f;
+  --color-ink-700: #24383f;
+  --color-ink-500: #556b73;
+  --color-ink-400: #7d919a;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f6f8f8;
+  --color-surface-sunken: #eef2f2;
+
+  --color-line: #dfe6e6;
+  --color-line-strong: #c6d2d2;
+
+  /* Acento institucional (marca) */
+  --color-brand-50: #eefaf7;
+  --color-brand-100: #d2f2ec;
+  --color-brand-500: #0e9384;
+  --color-brand-600: #0b7a6e;
+  --color-brand-700: #095f56;
+  --color-brand-900: #06403a;
+
+  /* Cores de série (validadas: ΔE CVD 13,1 · normal 23,4 · contraste ≥ 3:1) */
+  --color-serie-hibrido: #0e9384;
+  --color-serie-convencional: #b45309;
+  --color-serie-terciaria: #4f46e5;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 14px;
+
+  --container-shell: 1120px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Números tabulares em qualquer lugar que compare valores */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+::selection {
+  background: var(--color-brand-100);
+  color: var(--color-brand-900);
+}
+
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Entrada suave por seção — puramente de apoio à leitura */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Fundo de grade discreto para o hero — evoca planilha sem ser literal */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000 35%, transparent 100%);
+}
